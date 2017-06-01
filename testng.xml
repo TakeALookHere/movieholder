@@ -1,0 +1,13 @@
+<suite name="JdbcSuite">
+
+    <test name="ThreadPoolExecutor">
+        <classes>
+            <class name="com.miskevich.movieholder.dao.jdbc.JdbcMovieDaoTest">
+                <methods>
+                    <include name="testGetAll" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
