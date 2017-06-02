@@ -2,9 +2,10 @@ package com.miskevich.movieholder.dao.jdbc;
 
 import com.miskevich.movieholder.dao.IMovieDao;
 import com.miskevich.movieholder.dao.jdbc.mapper.MovieRowMapper;
+import com.miskevich.movieholder.dao.jdbc.util.ConnectionSource;
 import com.miskevich.movieholder.entity.Movie;
-import org.apache.commons.dbcp2.BasicDataSource;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcMovieDao implements IMovieDao{
-    private BasicDataSource dataSource;
+
+    public JdbcMovieDao() {
+        dataSource = ConnectionSource.createConnectionSource();
+    }
+
+    private DataSource dataSource;
     private static final  String MOVIE_ALL_SQL = "select id, name_russian, name_native, released_date, plot, rating, price, picture_path from movie";
     private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
 
@@ -32,7 +38,4 @@ public class JdbcMovieDao implements IMovieDao{
         return movies;
     }
 
-    public void setDataSource(BasicDataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 }

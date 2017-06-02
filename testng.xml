@@ -7,6 +7,11 @@
                     <include name="testGetAll" />
                 </methods>
             </class>
+            <class name="com.miskevich.movieholder.web.json.JsonConverterTest">
+                <methods>
+                    <include name="testToJson" />
+                </methods>
+            </class>
         </classes>
     </test>
 
