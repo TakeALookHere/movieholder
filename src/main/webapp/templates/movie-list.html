@@ -1,0 +1,47 @@
+<h1>Movie list</h1>
+
+<div class="row">
+    <div class="col-xs-6">
+        <div class="input-group">
+            <input type="text" ng-model='queryMovieName' class="form-control" placeholder="Название фильма...">
+        </div>
+    </div>
+
+    <div class="col-xs-6" align="right">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">Все жанры</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+
+            <ul class="dropdown-menu">
+                <genre-list></genre-list>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+
+<br>
+
+<div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat='movie in movies | orderBy: "-releasedDate.year" | filter: queryMovieName'>
+        <div class="thumbnail">
+            <a ng-href='/movie/{{ movie.id }}'>
+            <img src="/img/{{ movie.picturePath }}" alt="{{ movie.nameRussian }}">
+            <div class="caption">
+                    <div class="span-center">
+                        <span class="label label-primary">{{ movie.nameRussian }}</span>
+                        <br>
+                        <span class="label label-primary">{{movie.nameNative}}</span>
+                        <br>
+                        <span class="label label-primary">{{ movie.releasedDate.year }}</span>
+                    </div>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>

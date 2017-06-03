@@ -1,8 +1,8 @@
 package com.miskevich.movieholder.web.servlets;
 
-import com.miskevich.movieholder.entity.Movie;
-import com.miskevich.movieholder.service.IMovieService;
-import com.miskevich.movieholder.service.MovieService;
+import com.miskevich.movieholder.entity.Genre;
+import com.miskevich.movieholder.service.GenreService;
+import com.miskevich.movieholder.service.IGenreService;
 import com.miskevich.movieholder.web.json.JsonConverter;
 
 import javax.servlet.http.HttpServlet;
@@ -12,16 +12,16 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class AllMoviesServlet extends HttpServlet {
-    private IMovieService movieService;
+public class AllGenresServlet extends HttpServlet{
+    private IGenreService genreService;
 
-    public AllMoviesServlet() {
-        movieService = new MovieService();
+    public AllGenresServlet() {
+        genreService = new GenreService();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response){
 
-        List<Movie> movies = movieService.getAll();
+        List<Genre> movies = genreService.getAll();
 
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);

@@ -5,6 +5,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AllMoviesServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/AllMoviesServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AllGenresServlet</servlet-name>
+        <servlet-class>com.miskevich.movieholder.web.servlets.AllGenresServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AllGenresServlet</servlet-name>
+        <url-pattern>/AllGenresServlet</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -8,9 +8,11 @@ import java.util.List;
 
 public class MovieService implements IMovieService{
     private IMovieDao movieDao;
+    private IGenreService genreService;
 
     public MovieService() {
         movieDao = new JdbcMovieDao();
+        genreService = new GenreService();
     }
 
     @Override
