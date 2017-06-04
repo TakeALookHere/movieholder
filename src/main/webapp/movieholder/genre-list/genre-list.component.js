@@ -6,12 +6,12 @@
             templateUrl: '/templates/genre-list.html',
             controller: function ($http, $scope) {
                 $http.get("/AllGenresServlet").then(successCallback, errorCallback);
-                function successCallback(response, status, config, statusText) {
+                function successCallback(response) {
                     console.log(response.data)
                     $scope.genres = response.data
                 }
 
-                function errorCallback(response, status, config, statusText) {
+                function errorCallback(response) {
                     console.log(response)
                 }
             }

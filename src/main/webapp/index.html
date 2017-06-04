@@ -13,8 +13,6 @@
 
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-ui-router.min.js"></script>
-    <!--<script src="lib/angular-resource.js"></script>-->
-    <!--<script src="lib/angular-route.js"></script>-->
 
     <script src="movieholder/movieholder.module.js"></script>
 
@@ -22,13 +20,19 @@
     <script src="movieholder/movie-list/movie-list.component.js"></script>
     <script src="movieholder/genre-list/genre-list.module.js"></script>
     <script src="movieholder/genre-list/genre-list.component.js"></script>
+    <script src="movieholder/navbar/navbar.module.js"></script>
+    <script src="movieholder/navbar/navbar.component.js"></script>
+    <script src="movieholder/header/header.module.js"></script>
+    <script src="movieholder/header/header.component.js"></script>
 </head>
 <body>
 <div class="container">
-    <h1>Hi there</h1>
 
-    
+    <navbar></navbar>
+    <header></header>
+
     <movie-list></movie-list>
+
 </div>
 </body>
 </html>
