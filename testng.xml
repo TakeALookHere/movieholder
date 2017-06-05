@@ -22,6 +22,11 @@
                     <include name="testMap" />
                 </methods>
             </class>
+            <class name="com.miskevich.movieholder.dao.jdbc.mapper.MovieRowMapperTest">
+                <methods>
+                    <include name="testMap" />
+                </methods>
+            </class>
         </classes>
     </test>
 
