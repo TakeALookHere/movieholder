@@ -6,7 +6,8 @@
         'movieList',
         'genreList',
         'navbar',
-        'header'
+        'header',
+        'movieNameFilter'
     ])
     ;
 
