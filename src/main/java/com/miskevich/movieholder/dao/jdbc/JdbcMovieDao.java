@@ -15,13 +15,13 @@ import java.util.List;
 
 public class JdbcMovieDao implements IMovieDao{
 
-    public JdbcMovieDao() {
-        dataSource = ConnectionSource.createConnectionSource();
-    }
-
     private DataSource dataSource;
     private static final  String MOVIE_ALL_SQL = "select id, name_russian, name_native, released_date, plot, rating, price, picture_path from movie";
     private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
+
+    public JdbcMovieDao() {
+        dataSource = ConnectionSource.createConnectionSource();
+    }
 
     @Override
     public List<Movie> getAll() {

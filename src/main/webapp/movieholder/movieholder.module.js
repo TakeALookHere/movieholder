@@ -7,7 +7,7 @@
         'genreList',
         'navbar',
         'header',
-        'movieNameFilter'
+        'common'
     ])
     ;
 

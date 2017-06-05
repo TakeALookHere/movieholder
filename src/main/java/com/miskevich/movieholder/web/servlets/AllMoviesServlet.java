@@ -2,7 +2,7 @@ package com.miskevich.movieholder.web.servlets;
 
 import com.miskevich.movieholder.entity.Movie;
 import com.miskevich.movieholder.service.IMovieService;
-import com.miskevich.movieholder.service.MovieService;
+import com.miskevich.movieholder.service.impl.MovieService;
 import com.miskevich.movieholder.web.json.JsonConverter;
 
 import javax.servlet.http.HttpServlet;
@@ -23,12 +23,11 @@ public class AllMoviesServlet extends HttpServlet {
 
         List<Movie> movies = movieService.getAll();
 
-        response.setContentType("text/html;charset=utf-8");
+        response.setContentType("application/json;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(response.getWriter())){
             bufferedWriter.write(JsonConverter.toJson(movies));
-            bufferedWriter.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

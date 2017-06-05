@@ -11,7 +11,7 @@ public class ConnectionSource {
 
     private static DataSource dataSource;
 
-    public static DataSource createConnectionSource(){
+    public static synchronized DataSource createConnectionSource(){
         if(null != dataSource){
             return dataSource;
         }

@@ -4,5 +4,9 @@
 .header{
     width: 99%;
 }
+.movie-item:hover{
+    text-decoration: none;
+    background-color: #ccc;
+}
 
 

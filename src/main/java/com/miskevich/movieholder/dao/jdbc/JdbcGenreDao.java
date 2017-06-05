@@ -15,13 +15,13 @@ import java.util.List;
 
 public class JdbcGenreDao implements IGenreDao{
 
-    public JdbcGenreDao() {
-        dataSource = ConnectionSource.createConnectionSource();
-    }
-
     private DataSource dataSource;
     private static final  String GENRE_ALL_SQL = "select id, name from genre";
     private static final GenreRowMapper GENRE_ROW_MAPPER = new GenreRowMapper();
+
+    public JdbcGenreDao() {
+        dataSource = ConnectionSource.createConnectionSource();
+    }
 
     @Override
     public List<Genre> getAll() {

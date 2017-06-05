@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('movieNameFilter')
+    angular.module('common', [])
         .filter('movieNameFilter', function(){
             return function(movies, searchTerm) {
                 // If no array is given, exit.

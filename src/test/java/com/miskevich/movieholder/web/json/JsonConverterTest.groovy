@@ -1,6 +1,5 @@
 package com.miskevich.movieholder.web.json
 
-import com.miskevich.movieholder.dao.jdbc.JsonDataProvider
 import org.testng.annotations.Test
 import static org.testng.Assert.assertEquals
 

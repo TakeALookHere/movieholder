@@ -1,6 +1,6 @@
 <suite name="JdbcSuite">
 
-    <test name="ThreadPoolExecutor">
+    <test name="MovieHolder">
         <classes>
             <class name="com.miskevich.movieholder.dao.jdbc.JdbcMovieDaoTest">
                 <methods>
@@ -15,6 +15,11 @@
             <class name="com.miskevich.movieholder.web.json.JsonConverterTest">
                 <methods>
                     <include name="testToJson" />
+                </methods>
+            </class>
+            <class name="com.miskevich.movieholder.dao.jdbc.mapper.GenreRowMapperTest">
+                <methods>
+                    <include name="testMap" />
                 </methods>
             </class>
         </classes>

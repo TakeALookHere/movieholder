@@ -14,6 +14,11 @@
         <groovy.version>2.4.10</groovy.version>
         <surefire.version>2.20</surefire.version>
         <testng.version>6.9.9</testng.version>
+        <mockito.version>1.10.19</mockito.version>
+        <mysql.version>6.0.6</mysql.version>
+        <apache.version>2.1.1</apache.version>
+        <jackson.version>2.8.8.1</jackson.version>
+        <servlet.version>3.1.0</servlet.version>
         <java.version>1.8</java.version>
     </properties>
 
@@ -70,31 +75,24 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${servlet.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.8.8.1</version>
+            <version>${jackson.version}</version>
         </dependency>
-        <!-- I left it only to show that this doesn't help to solve problem with data format after json -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.9.0.pr2</version>
-        </dependency>
-
 
         <!--DB-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.6</version>
+            <version>${mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
-            <version>2.1.1</version>
+            <version>${apache.version}</version>
         </dependency>
 
         <!--TEST-->
@@ -108,6 +106,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
