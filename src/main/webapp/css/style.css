@@ -2,11 +2,23 @@
     text-align: center;
 }
 .header{
-    width: 99%;
+    max-width: 100%;
+    min-width: 100%;
 }
 .movie-item:hover{
     text-decoration: none;
-    background-color: #ccc;
+    background-color: lightgray;
+}
+.genre-menu{
+    text-decoration: none !important;
+    padding-left: 10px;
+}
+li:hover{
+    background-color: lightgray;
+}
+.custom-dropdown{
+    max-width: 125px;
+    min-width: 125px;
 }
 
 

@@ -3,6 +3,9 @@
 
     angular.module('MovieHolder', [
 
+        'ngResource',
+        'ngRoute',
+
         'movieList',
         'genreList',
         'navbar',

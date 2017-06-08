@@ -9,17 +9,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!--Custom CSS-->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
-
+    <base href="/" />
 </head>
 <body>
 <div class="container">
+    <div ng-view>UUUUUUUUUUUUUU</div>
 
-    <navbar></navbar>
-    <header></header>
+    <!--<navbar></navbar>-->
+    <!--<header></header>-->
 
-    <movie-list></movie-list>
+    <!--<movie-list></movie-list>-->
 
 </div>
 
@@ -29,22 +30,23 @@
 
 <!--AngularJS-->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 
 <!--Main module-->
-<script src="../movieholder/movieholder.module.js"></script>
-<script src="../movieholder/movieholder.routes.js"></script>
+<script src="/movieholder/movieholder.module.js"></script>
+<script src="/movieholder/movieholder.routes.js"></script>
 <!--Common module-->
-<script src="../movieholder/common/common.module.js"></script>
+<script src="movieholder/common/common.module.js"></script>
 <!--Custom modules and components-->
-<script src="../movieholder/movie-list/movie-list.module.js"></script>
-<script src="../movieholder/movie-list/movie-list.component.js"></script>
-<script src="../movieholder/genre-list/genre-list.module.js"></script>
-<script src="../movieholder/genre-list/genre-list.component.js"></script>
-<script src="../movieholder/navbar/navbar.module.js"></script>
-<script src="../movieholder/navbar/navbar.component.js"></script>
-<script src="../movieholder/header/header.module.js"></script>
-<script src="../movieholder/header/header.component.js"></script>
+<script src="movieholder/movie-list/movie-list.module.js"></script>
+<script src="movieholder/movie-list/movie-list.component.js"></script>
+<script src="movieholder/genre-list/genre-list.module.js"></script>
+<script src="movieholder/genre-list/genre-list.component.js"></script>
+<script src="movieholder/navbar/navbar.module.js"></script>
+<script src="movieholder/navbar/navbar.component.js"></script>
+<script src="movieholder/header/header.module.js"></script>
+<script src="movieholder/header/header.component.js"></script>
 
 
 </body>
