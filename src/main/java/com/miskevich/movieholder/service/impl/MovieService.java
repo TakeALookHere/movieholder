@@ -21,4 +21,11 @@ public class MovieService implements IMovieService {
     public List<Movie> getAll() {
         return movieDao.getAll();
     }
+
+    @Override
+    public List<Movie> getByGenre(int id) {
+        return movieDao.getByGenre(id);
+    }
+
+
 }

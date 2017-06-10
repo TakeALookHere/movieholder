@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IMovieDao {
     List<Movie> getAll();
+    List<Movie> getByGenre(int id);
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IMovieService {
     List<Movie> getAll();
+    List<Movie> getByGenre(int id);
 }

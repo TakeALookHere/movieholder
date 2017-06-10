@@ -7,7 +7,7 @@
             controller: function ($http, $scope) {
                 $http.get("/AllGenresServlet").then(successCallback, errorCallback);
                 function successCallback(response) {
-                    console.log(response.data)
+                    console.log(response.data);
                     $scope.genres = response.data
                 }
 
@@ -15,6 +15,8 @@
                     console.log(response)
                 }
             }
+
+
         })
     ;
 

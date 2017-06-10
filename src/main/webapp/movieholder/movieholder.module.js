@@ -2,14 +2,10 @@
     'use strict';
 
     angular.module('MovieHolder', [
-
-        'ngResource',
-        'ngRoute',
+        'ui.router',
 
         'movieList',
         'genreList',
-        'navbar',
-        'header',
         'common'
     ])
     ;

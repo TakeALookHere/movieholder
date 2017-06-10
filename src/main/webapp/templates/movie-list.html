@@ -25,7 +25,7 @@
 <br>
 
 <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat='movie in movies | orderBy: "-releasedDate" | movieNameFilter: queryMovieName'> <!--filter: queryMovieName-->
+    <div class="col-sm-6 col-md-4" ng-repeat='movie in movies | orderBy: "-releasedDate" | movieNameFilter: queryMovieName'>
         <div class="thumbnail">
             <a ng-href='/movie/{{ movie.id }}' class="movie-item">
             <img src="/img/{{ movie.picturePath }}" alt="{{ movie.nameRussian }}">

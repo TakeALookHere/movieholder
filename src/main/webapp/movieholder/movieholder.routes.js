@@ -1,20 +1,25 @@
 (function () {
     'use strict';
 
-    angular.module('MovieHolder', [])
-        .config(
-            function(
-                $routeProvider,
-                $locationProvider
-            ) {
+    angular.module('MovieHolder')
+        .config(RoutesConfig)
+    ;
 
-        $routeProvider
-            .when('/movies', {template: '<navbar></navbar><header></header><movie-list></movie-list>'})
-            .when('/movies/?genre=:genre.name', {template: '<navbar></navbar><header></header><movie-list></movie-list>', controller: GenreController})
-            .otherwise({redirectTo: '/movies'});
+    function RoutesConfig($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/movies');
 
-        $locationProvider.html5Mode(true);
+        $stateProvider
+            .state('movies', {
+                url: '/movies',
+                templateUrl: 'templates/movies.template.html'
+            })
 
-    });
+            .state('moviesByGenre', {
+                url: '/movies?genre=:genreId',
+                templateUrl: 'templates/movies.template.html'
+            })
+        ;
+
+    }
 
 })();

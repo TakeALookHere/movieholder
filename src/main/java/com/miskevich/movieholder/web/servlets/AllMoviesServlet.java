@@ -4,6 +4,7 @@ import com.miskevich.movieholder.entity.Movie;
 import com.miskevich.movieholder.service.IMovieService;
 import com.miskevich.movieholder.service.impl.MovieService;
 import com.miskevich.movieholder.web.json.JsonConverter;
+import com.miskevich.movieholder.web.util.ServletUtil;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,14 @@ public class AllMoviesServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response){
 
-        List<Movie> movies = movieService.getAll();
+        List<Movie> movies;
+
+        String requestParam = ServletUtil.getRequestParam(request, "genre");
+        if(requestParam.equals("undefined")){
+            movies = movieService.getAll();
+        }else {
+            movies = movieService.getByGenre(Integer.valueOf(requestParam));
+        }
 
         response.setContentType("application/json;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
