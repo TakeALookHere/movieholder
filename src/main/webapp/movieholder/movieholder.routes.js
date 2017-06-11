@@ -18,6 +18,11 @@
                 url: '/movies?genre=:genreId',
                 templateUrl: 'templates/movies.template.html'
             })
+
+            .state('movie', {
+                url: '/movie?movie=:movieId',
+                templateUrl: 'templates/movie.template.html'
+            })
         ;
 
     }

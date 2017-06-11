@@ -15,4 +15,13 @@ class JdbcGenreDaoTest extends GroovyTestCase {
             assertNotNull(genre.getName())
         }
     }
+
+    @Test
+    void testGetByMovieId(){
+        def genres = jdbcGenreDao.getByMovieId(1)
+        for(Genre genre : genres){
+            assertNotNull(genre.getId())
+            assertNotNull(genre.getName())
+        }
+    }
 }

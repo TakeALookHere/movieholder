@@ -7,9 +7,16 @@ import static org.testng.Assert.assertEquals
 class JsonConverterTest extends GroovyTestCase {
 
     @Test(dataProvider = "provideObjectList", dataProviderClass = JsonDataProvider.class)
-    void testToJson(movies, expectedJson) {
-        def json = JsonConverter.toJson(movies)
+    void testObjListToJson(movies, expectedJson) {
+        def actualJson = JsonConverter.toJson(movies)
 
-        assertEquals(json, expectedJson)
+        assertEquals(actualJson, expectedJson)
+    }
+
+    @Test(dataProvider = "provideObject", dataProviderClass = JsonDataProvider.class)
+    void testObjToJson(movie, expectedJson) {
+        def actualJson = JsonConverter.toJson(movie)
+
+        assertEquals(actualJson, expectedJson)
     }
 }

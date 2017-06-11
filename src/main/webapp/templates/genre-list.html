@@ -1,13 +1,5 @@
-    <li ng-repeat='genre in genres'>
-        <!--<a class = "genre-menu" ng-href='#/movies?genre={{ genre.name }}'>-->
-
-        <!--{{ genre.name }}-->
-        <!--</a>-->
-
-        <a ui-sref="moviesByGenre({ genreId: genre.id })" class = "genre-menu">
-
-            <!--<a ui-sref="moviesByGenre({ genreName: decodeURIComponent(genre.name) })" class = "genre-menu">-->
-        <!--<a href="{{beautyUri(genre.name)}}" class = "genre-menu">-->
-            {{ genre.name }}
-        </a>
-    </li>
+<li ng-repeat='genre in genres'>
+    <a ui-sref="moviesByGenre({ genreId: genre.id })" class = "genre-menu">
+        {{ genre.name }}
+    </a>
+</li>

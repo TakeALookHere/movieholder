@@ -11,30 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.List;
 
-public class AllMoviesServlet extends HttpServlet {
+public class MovieServlet extends HttpServlet{
+
     private IMovieService movieService;
 
-    public AllMoviesServlet() {
+    public MovieServlet() {
         movieService = new MovieService();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response){
-        List<Movie> movies;
-        String requestGenreId = ServletUtil.getRequestParam(request, "genre");
-        if(requestGenreId.equals("undefined")){
-            movies = movieService.getAll();
-        }else {
-            movies = movieService.getByGenre(Integer.valueOf(requestGenreId));
-        }
+        String requestMovieId = ServletUtil.getRequestParam(request, "movie");
+        Movie movie = movieService.getById(Integer.valueOf(requestMovieId));
 
         response.setContentType("application/json;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(response.getWriter())){
-            bufferedWriter.write(JsonConverter.toJson(movies));
-        } catch (IOException e) {
+        try(BufferedWriter bufferedWriter = new BufferedWriter(response.getWriter())){
+            bufferedWriter.write(JsonConverter.toJson(movie));
+        }catch (IOException e){
             throw new RuntimeException(e);
         }
     }

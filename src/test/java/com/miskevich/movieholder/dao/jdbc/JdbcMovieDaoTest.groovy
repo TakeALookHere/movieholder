@@ -39,4 +39,17 @@ class JdbcMovieDaoTest extends GroovyTestCase {
             assertNotNull(movie.getPicturePath())
         }
     }
+
+    @Test
+    void testGetById(){
+        def movie = jdbcMovieDao.getById(1)
+        assertNotNull(movie.getId())
+        assertNotNull(movie.getNameRussian())
+        assertNotNull(movie.getNameNative())
+        assertNotNull(movie.getReleasedDate())
+        assertNotNull(movie.getPlot())
+        assertNotNull(movie.getRating())
+        assertNotNull(movie.getPrice())
+        assertNotNull(movie.getPicturePath())
+    }
 }

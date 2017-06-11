@@ -16,4 +16,13 @@
         <servlet-name>AllGenresServlet</servlet-name>
         <url-pattern>/AllGenresServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MovieServlet</servlet-name>
+        <servlet-class>com.miskevich.movieholder.web.servlets.MovieServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MovieServlet</servlet-name>
+        <url-pattern>/MovieServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

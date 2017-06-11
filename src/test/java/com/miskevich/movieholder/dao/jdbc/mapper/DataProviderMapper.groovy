@@ -1,7 +1,10 @@
 package com.miskevich.movieholder.dao.jdbc.mapper
 
+import com.miskevich.movieholder.entity.Country
 import com.miskevich.movieholder.entity.Genre
 import com.miskevich.movieholder.entity.Movie
+import com.miskevich.movieholder.entity.Review
+import com.miskevich.movieholder.entity.User
 import org.testng.annotations.DataProvider
 
 import java.time.LocalDate
@@ -22,7 +25,7 @@ class DataProviderMapper {
         def expectedGenre = new Genre(id: 1, name: "драма")
 
         def array = new Object[1][]
-        array[0] = [expectedGenre]
+        array[0] = expectedGenre
         return array
     }
 
@@ -34,7 +37,35 @@ class DataProviderMapper {
         rating: 8.9, price: 123.45, picturePath: "shawshank173_173.jpg")
 
         def array = new Object[1][]
-        array[0] = [expectedMovie]
+        array[0] = expectedMovie
+        return array
+    }
+
+    @DataProvider(name = "provideCountry")
+    static Object[][] provideCountry(){
+        def expectedCountry = new Country(id: 1, name: "США")
+
+        def array = new Object[1][]
+        array[0] = expectedCountry
+        return array
+    }
+
+    @DataProvider(name = "provideReview")
+    static Object[][] provideReview(){
+        def expectedReview = new Review(id: 1, description: "Гениальное кино! Смотришь и думаешь «Так не бывает!», но позже понимаешь, что только так и должно быть. Начинаешь заново осмысливать значение фразы, которую постоянно используешь в своей жизни, «Надежда умирает последней». Ведь если ты не надеешься, то все в твоей жизни гаснет, не остается смысла. Фильм наполнен бесконечным числом правильных афоризмов. Я уверена, что буду пересматривать его сотни раз.",
+        movie: new Movie(id: 1), user: new User(id: 3))
+
+        def array = new Object[1][]
+        array[0] = expectedReview
+        return array
+    }
+
+    @DataProvider(name = "provideUser")
+    static Object[][] provideUser(){
+        def expectedUser = new User(id: 2, nickname: "Рональд Рейнольдс", email: "ronald.reynolds66@example.com")
+
+        def array = new Object[1][]
+        array[0] = expectedUser
         return array
     }
 }

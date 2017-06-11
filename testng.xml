@@ -6,16 +6,34 @@
                 <methods>
                     <include name="testGetAll" />
                     <include name="testGetByGenre" />
+                    <include name="testGetById" />
                 </methods>
             </class>
             <class name="com.miskevich.movieholder.dao.jdbc.JdbcGenreDaoTest">
                 <methods>
                     <include name="testGetAll" />
+                    <include name="testGetByMovieId" />
+                </methods>
+            </class>
+            <class name="com.miskevich.movieholder.dao.jdbc.JdbcCountryDao">
+                <methods>
+                    <include name="testGetByMovieId" />
+                </methods>
+            </class>
+            <class name="com.miskevich.movieholder.dao.jdbc.JdbcReviewDao">
+                <methods>
+                    <include name="testGetByMovieId" />
+                </methods>
+            </class>
+            <class name="com.miskevich.movieholder.dao.jdbc.JdbcUserDaoTest">
+                <methods>
+                    <include name="testGetById" />
                 </methods>
             </class>
             <class name="com.miskevich.movieholder.web.json.JsonConverterTest">
                 <methods>
-                    <include name="testToJson" />
+                    <include name="testObjListToJson" />
+                    <include name="testObjToJson" />
                 </methods>
             </class>
             <class name="com.miskevich.movieholder.dao.jdbc.mapper.GenreRowMapperTest">
@@ -24,6 +42,21 @@
                 </methods>
             </class>
             <class name="com.miskevich.movieholder.dao.jdbc.mapper.MovieRowMapperTest">
+                <methods>
+                    <include name="testMap" />
+                </methods>
+            </class>
+            <class name="com.miskevich.movieholder.dao.jdbc.mapper.CountryRowMapperTest">
+                <methods>
+                    <include name="testMap" />
+                </methods>
+            </class>
+            <class name="com.miskevich.movieholder.dao.jdbc.mapper.ReviewRowMapperTest">
+                <methods>
+                    <include name="testMap" />
+                </methods>
+            </class>
+            <class name="com.miskevich.movieholder.dao.jdbc.mapper.UserRowMapperTest">
                 <methods>
                     <include name="testMap" />
                 </methods>

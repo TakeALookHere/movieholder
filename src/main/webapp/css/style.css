@@ -1,3 +1,6 @@
+body{
+    background-color: #e6e6fa;
+}
 .span-center {
     text-align: center;
 }
@@ -19,6 +22,33 @@ li:hover{
 .custom-dropdown{
     max-width: 125px;
     min-width: 125px;
+}
+.custom-image-size{
+    max-width: 400px;
+    min-width: 200px;
+    max-height: 400px;
+    min-height: 200px;
+}
+.custom-picture{
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+}
+.area-size{
+    resize: none;
+}
+.form-group.required .control-label:before{
+    color: red;
+    content: "*";
+    position: absolute;
+    margin-left: -15px;
+    font-family: "Glyphicons Halflings";
+    font-weight: normal;
+    font-size: 8px;
+}
+.width-center{
+    text-align: justify;
 }
 
 

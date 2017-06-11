@@ -6,7 +6,8 @@
 
         'movieList',
         'genreList',
-        'common'
+        'common',
+        'movie'
     ])
     ;
 

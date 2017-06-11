@@ -9,12 +9,12 @@
                 console.log("genreId: " + $scope.genreId);
                 $http.get("/AllMoviesServlet?genre=" + $scope.genreId).then(successCallback, errorCallback);
                 function successCallback(response) {
-                    console.log("response data", response.data);
+                    console.log("movie list response data", response.data);
                     $scope.movies = response.data
                 }
                 
                 function errorCallback(response) {
-                    console.log("error response", response)
+                    console.log("movie list error response", response)
                 }
             }
         })
