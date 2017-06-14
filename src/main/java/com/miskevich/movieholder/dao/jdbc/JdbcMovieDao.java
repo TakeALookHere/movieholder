@@ -13,16 +13,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcMovieDao implements IMovieDao{
+public class JdbcMovieDao implements IMovieDao {
 
-    private static final String MOVIE_ALL_SQL = "select id, name_russian, name_native, released_date, plot, rating, price, picture_path from movie";
-    private static final String MOVIE_BY_GENRE_SQL = "select id, name_russian, name_native, released_date, plot, rating, price, picture_path from movie " +
-            "where id in(select distinct movie_id from movie_genre where genre_id = ?)";
-    private static final String MOVIE_BY_ID_SQL = "select id, name_russian, name_native, released_date, plot, rating, price, picture_path from movie " +
-            "where id = ?";
+    private static final String MOVIE_ALL_SQL = "SELECT id, name_russian, name_native, released_date, plot, rating, price, picture_path FROM movie";
+    private static final String MOVIE_BY_GENRE_SQL = "SELECT id, name_russian, name_native, released_date, plot, rating, price, picture_path FROM movie " +
+            "WHERE id IN(SELECT DISTINCT movie_id FROM movie_genre WHERE genre_id = ?)";
+    private static final String MOVIE_BY_ID_SQL = "SELECT id, name_russian, name_native, released_date, plot, rating, price, picture_path FROM movie " +
+            "WHERE id = ?";
+
+    private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
 
     private DataSource dataSource;
-    private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
 
     public JdbcMovieDao() {
         dataSource = ConnectionSource.createConnectionSource();
@@ -31,13 +32,14 @@ public class JdbcMovieDao implements IMovieDao{
     @Override
     public List<Movie> getAll() {
         List<Movie> movies = new ArrayList<>();
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(MOVIE_ALL_SQL);
-            ResultSet resultSet = preparedStatement.executeQuery()){
-            while (resultSet.next()){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(MOVIE_ALL_SQL);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
                 movies.add(MOVIE_ROW_MAPPER.map(resultSet));
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return movies;
@@ -46,17 +48,17 @@ public class JdbcMovieDao implements IMovieDao{
     @Override
     public List<Movie> getByGenre(int id) {
         List<Movie> movies = new ArrayList<>();
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(MOVIE_BY_GENRE_SQL)){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(MOVIE_BY_GENRE_SQL)) {
             preparedStatement.setInt(1, id);
 
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while (resultSet.next()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     movies.add(MOVIE_ROW_MAPPER.map(resultSet));
                 }
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return movies;
@@ -66,16 +68,16 @@ public class JdbcMovieDao implements IMovieDao{
     public Movie getById(int id) {
         Movie movie = new Movie();
 
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(MOVIE_BY_ID_SQL)){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(MOVIE_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
 
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while (resultSet.next()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     movie = MOVIE_ROW_MAPPER.map(resultSet);
                 }
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return movie;

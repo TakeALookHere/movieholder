@@ -13,14 +13,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcGenreDao implements IGenreDao{
+public class JdbcGenreDao implements IGenreDao {
 
 
     private static final String GENRE_ALL_SQL = "select id, name from genre";
     private static final String GENRE_BY_MOVIE_ID_SQL = "select id, name from genre where id in(select distinct genre_id from movie_genre where movie_id = ?)";
 
-    private DataSource dataSource;
     private static final GenreRowMapper GENRE_ROW_MAPPER = new GenreRowMapper();
+
+    private DataSource dataSource;
 
     public JdbcGenreDao() {
         dataSource = ConnectionSource.createConnectionSource();
@@ -29,13 +30,14 @@ public class JdbcGenreDao implements IGenreDao{
     @Override
     public List<Genre> getAll() {
         List<Genre> genres = new ArrayList<>();
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(GENRE_ALL_SQL);
-            ResultSet resultSet = preparedStatement.executeQuery()){
-            while (resultSet.next()){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GENRE_ALL_SQL);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
                 genres.add(GENRE_ROW_MAPPER.map(resultSet));
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return genres;
@@ -44,17 +46,17 @@ public class JdbcGenreDao implements IGenreDao{
     @Override
     public List<Genre> getByMovieId(int movieId) {
         List<Genre> genres = new ArrayList<>();
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(GENRE_BY_MOVIE_ID_SQL)){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GENRE_BY_MOVIE_ID_SQL)) {
             preparedStatement.setInt(1, movieId);
 
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while (resultSet.next()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     genres.add(GENRE_ROW_MAPPER.map(resultSet));
                 }
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return genres;

@@ -13,12 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcReviewDao implements IReviewDao{
+public class JdbcReviewDao implements IReviewDao {
 
     private static final String REVIEW_BY_MOVIE_ID_SQL = "select id, movie_id, user_id, description from review where movie_id = ?";
 
-    private DataSource dataSource;
     private static final ReviewRowMapper REVIEW_ROW_MAPPER = new ReviewRowMapper();
+
+    private DataSource dataSource;
 
     public JdbcReviewDao() {
         dataSource = ConnectionSource.createConnectionSource();
@@ -27,15 +28,16 @@ public class JdbcReviewDao implements IReviewDao{
     @Override
     public List<Review> getByMovieId(int movieId) {
         List<Review> reviews = new ArrayList<>();
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(REVIEW_BY_MOVIE_ID_SQL)){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(REVIEW_BY_MOVIE_ID_SQL)) {
             preparedStatement.setInt(1, movieId);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while (resultSet.next()){
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     reviews.add(REVIEW_ROW_MAPPER.map(resultSet));
                 }
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return reviews;

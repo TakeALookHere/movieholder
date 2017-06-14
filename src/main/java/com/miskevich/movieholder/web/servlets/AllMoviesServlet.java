@@ -2,7 +2,7 @@ package com.miskevich.movieholder.web.servlets;
 
 import com.miskevich.movieholder.entity.Movie;
 import com.miskevich.movieholder.service.IMovieService;
-import com.miskevich.movieholder.service.impl.MovieService;
+import com.miskevich.movieholder.service.util.ServiceLocator;
 import com.miskevich.movieholder.web.json.JsonConverter;
 import com.miskevich.movieholder.web.util.ServletUtil;
 
@@ -17,22 +17,22 @@ public class AllMoviesServlet extends HttpServlet {
     private IMovieService movieService;
 
     public AllMoviesServlet() {
-        movieService = new MovieService();
+        movieService = ServiceLocator.getLocator(IMovieService.class);
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response){
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
         List<Movie> movies;
         String requestGenreId = ServletUtil.getRequestParam(request, "genre");
-        if(requestGenreId.equals("undefined")){
+        if (requestGenreId.equals("undefined")) {
             movies = movieService.getAll();
-        }else {
+        } else {
             movies = movieService.getByGenre(Integer.valueOf(requestGenreId));
         }
 
         response.setContentType("application/json;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(response.getWriter())){
+        try (BufferedWriter bufferedWriter = new BufferedWriter(response.getWriter())) {
             bufferedWriter.write(JsonConverter.toJson(movies));
         } catch (IOException e) {
             throw new RuntimeException(e);

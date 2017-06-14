@@ -1,17 +1,17 @@
 package com.miskevich.movieholder.service.impl;
 
 import com.miskevich.movieholder.dao.IUserDao;
-import com.miskevich.movieholder.dao.jdbc.JdbcUserDao;
 import com.miskevich.movieholder.entity.Review;
 import com.miskevich.movieholder.entity.User;
 import com.miskevich.movieholder.service.IUserService;
+import com.miskevich.movieholder.service.util.ServiceLocator;
 
-public class UserService implements IUserService{
+public class UserService implements IUserService {
 
     private IUserDao userDao;
 
     public UserService() {
-        userDao = new JdbcUserDao();
+        userDao = ServiceLocator.getLocator(IUserDao.class);
     }
 
     @Override
