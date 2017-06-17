@@ -5,7 +5,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AllMoviesServlet</servlet-name>
-        <url-pattern>/AllMoviesServlet</url-pattern>
+        <url-pattern>/movies</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -14,7 +14,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AllGenresServlet</servlet-name>
-        <url-pattern>/AllGenresServlet</url-pattern>
+        <url-pattern>/genres</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -23,6 +23,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MovieServlet</servlet-name>
-        <url-pattern>/MovieServlet</url-pattern>
+        <url-pattern>/movie</url-pattern>
     </servlet-mapping>
 </web-app>

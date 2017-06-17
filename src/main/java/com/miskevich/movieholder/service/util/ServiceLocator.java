@@ -13,20 +13,26 @@ public class ServiceLocator {
     private static final Map<Class<?>, Object> LOCATOR = new HashMap<>();
 
     static {
-        LOCATOR.put(ICountryDao.class, new JdbcCountryDao());
-        LOCATOR.put(ICountryService.class, new CountryService());
+        JdbcCountryDao countryDao = new JdbcCountryDao();
+        CountryService countryService = new CountryService(countryDao);
+        LOCATOR.put(ICountryService.class, countryService);
 
-        LOCATOR.put(IGenreDao.class, new JdbcGenreDao());
-        LOCATOR.put(IGenreService.class, new GenreService());
+        JdbcGenreDao jdbcGenreDao = new JdbcGenreDao();
+        GenreService genreService = new GenreService(jdbcGenreDao);
+        LOCATOR.put(IGenreService.class, genreService);
 
-        LOCATOR.put(IReviewDao.class, new JdbcReviewDao());
-        LOCATOR.put(IReviewService.class, new ReviewService());
+        JdbcUserDao jdbcUserDao = new JdbcUserDao();
+        UserService userService = new UserService(jdbcUserDao);
+        LOCATOR.put(IUserService.class, userService);
 
-        LOCATOR.put(IUserDao.class, new JdbcUserDao());
-        LOCATOR.put(IUserService.class, new UserService());
+        JdbcReviewDao reviewDao = new JdbcReviewDao();
+        ReviewService reviewService = new ReviewService(reviewDao, userService);
+        LOCATOR.put(IReviewService.class, reviewService);
 
-        LOCATOR.put(IMovieDao.class, new JdbcMovieDao());
-        LOCATOR.put(IMovieService.class, new MovieService());
+
+        JdbcMovieDao movieDao = new JdbcMovieDao();
+        MovieService movieService = new MovieService(movieDao, genreService, countryService, reviewService);
+        LOCATOR.put(IMovieService.class, movieService);
     }
 
     @SuppressWarnings("unchecked")

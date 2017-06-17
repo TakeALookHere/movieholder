@@ -6,7 +6,7 @@
     ;
 
     function RoutesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-        //$locationProvider.hashPrefix('');
+        $locationProvider.hashPrefix('');
         $urlRouterProvider.otherwise('/movies');
 
         $stateProvider

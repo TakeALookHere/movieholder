@@ -1,11 +1,11 @@
 package com.miskevich.movieholder.service.impl;
 
 import com.miskevich.movieholder.dao.IReviewDao;
+import com.miskevich.movieholder.dao.jdbc.JdbcReviewDao;
 import com.miskevich.movieholder.entity.Movie;
 import com.miskevich.movieholder.entity.Review;
 import com.miskevich.movieholder.service.IReviewService;
 import com.miskevich.movieholder.service.IUserService;
-import com.miskevich.movieholder.service.util.ServiceLocator;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ public class ReviewService implements IReviewService {
     private IReviewDao reviewDao;
     private IUserService userService;
 
-    public ReviewService() {
-        reviewDao = ServiceLocator.getLocator(IReviewDao.class);
-        userService = ServiceLocator.getLocator(IUserService.class);
+    public ReviewService(JdbcReviewDao reviewDao, UserService userService) {
+        setReviewDao(reviewDao);
+        setUserService(userService);
     }
 
     @Override
@@ -32,5 +32,13 @@ public class ReviewService implements IReviewService {
     public Movie enrichWithReview(Movie movie) {
         movie.setReviews(getByMovieId(movie.getId()));
         return movie;
+    }
+
+    public void setReviewDao(IReviewDao reviewDao) {
+        this.reviewDao = reviewDao;
+    }
+
+    public void setUserService(IUserService userService) {
+        this.userService = userService;
     }
 }

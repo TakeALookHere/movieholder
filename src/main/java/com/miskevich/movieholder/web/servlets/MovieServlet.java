@@ -21,7 +21,7 @@ public class MovieServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        String requestMovieId = ServletUtil.getRequestParam(request, "movie");
+        String requestMovieId = ServletUtil.getFirstValueOfRequestParam(request, "movie");
         Movie movie = movieService.getById(Integer.valueOf(requestMovieId));
 
         response.setContentType("application/json;charset=utf-8");

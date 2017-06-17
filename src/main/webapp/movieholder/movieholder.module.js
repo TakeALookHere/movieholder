@@ -3,6 +3,7 @@
 
     angular.module('MovieHolder', [
         'ui.router',
+        'ngDesktopNotification',
 
         'movieList',
         'genreList',

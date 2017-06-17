@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class AllMoviesServlet extends HttpServlet {
     private IMovieService movieService;
@@ -22,10 +23,13 @@ public class AllMoviesServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         List<Movie> movies;
-        String requestGenreId = ServletUtil.getRequestParam(request, "genre");
-        if (requestGenreId.equals("undefined")) {
+
+        Map<String, String[]> parameterMap = request.getParameterMap();
+
+        if(parameterMap.isEmpty()){
             movies = movieService.getAll();
-        } else {
+        }else {
+            String requestGenreId = ServletUtil.getFirstValueOfRequestParam(request, "genre");
             movies = movieService.getByGenre(Integer.valueOf(requestGenreId));
         }
 

@@ -15,7 +15,7 @@ class ServletUtilTest extends GroovyTestCase {
         param[0] = '3'
         HttpServletRequest request = mock(HttpServletRequest.class)
         when(request.getParameterValues('genre')).thenReturn(param)
-        def actualParam = ServletUtil.getRequestParam(request, 'genre')
+        def actualParam = ServletUtil.getFirstValueOfRequestParam(request, 'genre')
         assertEquals(actualParam, '3')
     }
 }

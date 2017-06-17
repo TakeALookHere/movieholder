@@ -1,0 +1,14 @@
+.movie-item:hover{
+    text-decoration: none;
+    background-color: lightgray;
+}
+li:hover{
+    background-color: lightgray;
+}
+.custom-dropdown{
+    max-width: 125px;
+    min-width: 125px;
+}
+.span-center {
+    text-align: center;
+}
