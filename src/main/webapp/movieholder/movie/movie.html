@@ -1,26 +1,26 @@
 <div>
-    <h3><strong>{{ movie.nameRussian }}</strong></h3>
-    <h3><strong>{{ movie.nameNative }}</strong></h3>
+    <h3><strong>{{ ctrl.movie.nameRussian }}</strong></h3>
+    <h3><strong>{{ ctrl.movie.nameNative }}</strong></h3>
 
     <div class="row">
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail custom-image-size">
-                <img src="/img/{{ movie.picturePath }}" alt="{{ movie.nameRussian }}" class="custom-picture"/>
+                <img src="/img/{{ ctrl.movie.picturePath }}" alt="{{ ctrl.movie.nameRussian }}" class="custom-picture"/>
             </div>
         </div>
 
         <div class="col-sm-6 col-md-8">
-            <h4><strong>Год выпуска: </strong>{{ movie.releasedDate }}</h4>
+            <h4><strong>Год выпуска: </strong>{{ ctrl.movie.releasedDate }}</h4>
             <h4><strong>Страна: </strong>
-                <span ng-repeat="country in movie.countries">{{country.name}}{{$last ? '' : ', '}}</span>
+                <span ng-repeat="country in ctrl.movie.countries">{{ country.name }}{{$last ? '' : ', '}}</span>
             </h4>
             <h4><strong>Жанр: </strong>
-                <span ng-repeat="genre in movie.genres">{{genre.name}}{{$last ? '' : ', '}}</span>
+                <span ng-repeat="genre in ctrl.movie.genres">{{ genre.name }}{{$last ? '' : ', '}}</span>
             </h4>
-            <h4><strong>Рейтиг: </strong>{{ movie.rating }}</h4>
-            <h4><strong>Собрал в прокате: </strong>{{ movie.price | currency}}</h4>
+            <h4><strong>Рейтиг: </strong>{{ ctrl.movie.rating }}</h4>
+            <h4><strong>Собрал в прокате: </strong>{{ ctrl.movie.price | currency}}</h4>
             <h4><strong>Описание: </strong></h4>
-            <h4 class="width-center">{{ movie.plot }}</h4>
+            <h4 class="width-center">{{ ctrl.movie.plot }}</h4>
         </div>
     </div>
     <br>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group required">
                 <label class="control-label">Комментарий</label>
-                <textarea class="form-control area-size" required="required" maxlength="500" rows="4" placeholder="Введите отзыв..."></textarea>
+                <textarea class="form-control area-size" required maxlength="500" rows="4" placeholder="Введите отзыв..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary pull-right">Отправить</button>
         </div>
@@ -42,7 +42,7 @@
 <br>
 
 <div class="row">
-    <div class="col-xs-12 col-md-12" ng-repeat='review in movie.reviews'>
+    <div class="col-xs-12 col-md-12" ng-repeat='review in ctrl.movie.reviews'>
         <span class="label label-primary">{{ review.user.nickname }}</span>
         <h4 class="width-center">{{ review.description }}</h4>
         <div class="btn-group pull-right">

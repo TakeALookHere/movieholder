@@ -1,4 +1,4 @@
-<li ng-repeat='genre in genres'>
+<li ng-repeat='genre in ctrl.genres'>
     <a ui-sref="moviesByGenre({ genreId: genre.id })" class = "genre-menu">
         {{ genre.name }}
     </a>

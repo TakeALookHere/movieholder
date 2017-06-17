@@ -25,10 +25,10 @@
 <br>
 
 <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat='movie in movies | orderBy: "-releasedDate" | movieNameFilter: queryMovieName'>
+    <div class="col-sm-6 col-md-4" ng-repeat='movie in ctrl.movies | orderBy: "-releasedDate" | movieNameFilter: queryMovieName'>
         <div class="thumbnail">
             <a ui-sref="movie({ movieId: movie.id })" class="movie-item">
-            <img src="/img/{{ movie.picturePath }}" alt="{{ movie.nameRussian }}">
+            <img ng-src="/img/{{ movie.picturePath }}" alt="{{ movie.nameRussian }}">
             <div class="caption">
                     <div class="span-center">
                         <span class="label label-primary">{{ movie.nameRussian }}</span>
