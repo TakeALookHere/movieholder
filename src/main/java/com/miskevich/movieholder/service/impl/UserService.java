@@ -25,6 +25,11 @@ public class UserService implements IUserService {
         return review;
     }
 
+    @Override
+    public User getByNickname(String nickname) {
+        return userDao.getByNickname(nickname);
+    }
+
     public void setUserDao(IUserDao userDao) {
         this.userDao = userDao;
     }

@@ -25,4 +25,13 @@
         <servlet-name>MovieServlet</servlet-name>
         <url-pattern>/movie</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReviewServlet</servlet-name>
+        <servlet-class>com.miskevich.movieholder.web.servlets.ReviewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewServlet</servlet-name>
+        <url-pattern>/review</url-pattern>
+    </servlet-mapping>
 </web-app>

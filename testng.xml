@@ -23,11 +23,13 @@
             <class name="com.miskevich.movieholder.dao.jdbc.JdbcReviewDao">
                 <methods>
                     <include name="testGetByMovieId" />
+                    <include name="testAdd" />
                 </methods>
             </class>
             <class name="com.miskevich.movieholder.dao.jdbc.JdbcUserDaoTest">
                 <methods>
                     <include name="testGetById" />
+                    <include name="testGetByNickname" />
                 </methods>
             </class>
             <class name="com.miskevich.movieholder.web.json.JsonConverterTest">

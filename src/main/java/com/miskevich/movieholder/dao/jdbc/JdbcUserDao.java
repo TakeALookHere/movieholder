@@ -14,6 +14,7 @@ import java.sql.SQLException;
 public class JdbcUserDao implements IUserDao {
 
     private static final String USER_BY_ID_SQL = "select id, nickname, email from user where id = ?";
+    private static final String USER_BY_NICKNAME_SQL = "select id, nickname, email from user where nickname = ?";
 
     private static final UserRowMapper USER_ROW_MAPPER = new UserRowMapper();
 
@@ -38,6 +39,36 @@ public class JdbcUserDao implements IUserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return user;
+    }
+
+    @Override
+    public User getByNickname(String nickname) {
+        User user = new User();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(USER_BY_NICKNAME_SQL)) {
+            preparedStatement.setString(1, nickname);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    user = USER_ROW_MAPPER.map(resultSet);
+                }
+            }
+
+            if (user.getId() != 0) {
+                return user;
+            } else {
+                preparedStatement.setString(1, "Anonymous");
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        user = USER_ROW_MAPPER.map(resultSet);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         return user;
     }
 }

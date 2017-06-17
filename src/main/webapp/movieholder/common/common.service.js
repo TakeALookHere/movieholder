@@ -45,6 +45,19 @@
             });
         };
 
+        service.addReview = function (review) {
+            console.log("Review in the POST", review);
+            console.log("ToJson", JSON.stringify({'review': review}));
+            return $http({
+                method: "POST",
+                url: ("/review"),
+                //data: JSON.stringify({'review': review, 'message' : 'myMessage'}),
+                data: JSON.stringify({'description': review.description, 'movie' : review.movie, 'user' : review.user}),
+                //data: {'review': review, 'message' : 'myMessage'},
+                headers: {'Content-Type': 'application/json'}
+            });
+        };
+
     }
 
 

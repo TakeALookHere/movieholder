@@ -13,4 +13,12 @@ class JdbcUserDaoTest extends GroovyTestCase {
         assertNotNull(user.getNickname())
         assertNotNull(user.getEmail())
     }
+
+    @Test
+    void testGetByNickname(){
+        def user = jdbcUserDao.getByNickname('q')
+        assertNotNull(user.getId())
+        assertNotNull(user.getNickname())
+        assertNotNull(user.getEmail())
+    }
 }

@@ -1,6 +1,5 @@
 package com.miskevich.movieholder.service.util;
 
-import com.miskevich.movieholder.dao.*;
 import com.miskevich.movieholder.dao.jdbc.*;
 import com.miskevich.movieholder.service.*;
 import com.miskevich.movieholder.service.impl.*;

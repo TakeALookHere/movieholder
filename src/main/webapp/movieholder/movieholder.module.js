@@ -8,7 +8,8 @@
         'movieList',
         'genreList',
         'common',
-        'movie'
+        'movie',
+        'review'
     ])
     ;
 

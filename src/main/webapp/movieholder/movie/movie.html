@@ -24,17 +24,18 @@
         </div>
     </div>
     <br>
-    <div class="row">
+    <div class="row" ng-controller="ReviewController as reviewCtrl">
         <div class="col-md-4 col-md-offset-4">
             <div class="form-group">
                 <label class="control-label">Логин</label>
-                <input type="text" class="form-control" placeholder="Введите логин…">
+                <input type="text" class="form-control" placeholder="Введите логин…" ng-model="review.user.nickname">
             </div>
             <div class="form-group required">
                 <label class="control-label">Комментарий</label>
-                <textarea class="form-control area-size" required maxlength="500" rows="4" placeholder="Введите отзыв..."></textarea>
+                <textarea class="form-control area-size" ng-required="true" required maxlength="500" rows="4" placeholder="Введите отзыв..." ng-model="review.description"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary pull-right">Отправить</button>
+            <input type="hidden" ng-model="ctrl.movie.id">
+            <button type="submit" class="btn btn-primary pull-right" ng-click="reviewCtrl.submitReview(reviewCtrl.review)">Отправить</button>
         </div>
     </div>
 

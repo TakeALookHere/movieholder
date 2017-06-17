@@ -4,6 +4,7 @@ import com.miskevich.movieholder.dao.IReviewDao;
 import com.miskevich.movieholder.dao.jdbc.JdbcReviewDao;
 import com.miskevich.movieholder.entity.Movie;
 import com.miskevich.movieholder.entity.Review;
+import com.miskevich.movieholder.entity.User;
 import com.miskevich.movieholder.service.IReviewService;
 import com.miskevich.movieholder.service.IUserService;
 
@@ -32,6 +33,13 @@ public class ReviewService implements IReviewService {
     public Movie enrichWithReview(Movie movie) {
         movie.setReviews(getByMovieId(movie.getId()));
         return movie;
+    }
+
+    @Override
+    public Review add(Review review) {
+        User userByNickname = userService.getByNickname(review.getUser().getNickname());
+        review.setUser(userByNickname);
+        return reviewDao.add(review);
     }
 
     public void setReviewDao(IReviewDao reviewDao) {

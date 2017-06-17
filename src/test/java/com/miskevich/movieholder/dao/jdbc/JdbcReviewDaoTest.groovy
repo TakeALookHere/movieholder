@@ -3,7 +3,6 @@ package com.miskevich.movieholder.dao.jdbc
 import com.miskevich.movieholder.entity.Review
 import org.testng.annotations.Test
 
-
 class JdbcReviewDaoTest extends GroovyTestCase {
 
     private JdbcReviewDao jdbcReviewDao = new JdbcReviewDao()
@@ -17,5 +16,15 @@ class JdbcReviewDaoTest extends GroovyTestCase {
             assertNotNull(review.getMovie())
             assertNotNull(review.getUser())
         }
+    }
+
+    @Test(dataProvider = "provideAddReview", dataProviderClass = DataProviderJdbc.class)
+    void testAdd(Review reviewForAdd){
+        def review = jdbcReviewDao.add(reviewForAdd)
+
+        assertNotNull(review.getId())
+        assertNotNull(review.getMovie().getId())
+        assertNotNull(review.getUser().getId())
+        assertNotNull(review.getDescription())
     }
 }

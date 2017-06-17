@@ -16,6 +16,7 @@ import java.util.List;
 public class JdbcReviewDao implements IReviewDao {
 
     private static final String REVIEW_BY_MOVIE_ID_SQL = "select id, movie_id, user_id, description from review where movie_id = ?";
+    private static final String REVIEW_INSERT_SQL = "insert into review (movie_id, user_id, description) values(?, ?, ?)";
 
     private static final ReviewRowMapper REVIEW_ROW_MAPPER = new ReviewRowMapper();
 
@@ -41,5 +42,20 @@ public class JdbcReviewDao implements IReviewDao {
             throw new RuntimeException(e);
         }
         return reviews;
+    }
+
+    @Override
+    public Review add(Review review) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(REVIEW_INSERT_SQL)) {
+
+            preparedStatement.setInt(1, review.getMovie().getId());
+            preparedStatement.setInt(2, review.getUser().getId());
+            preparedStatement.setString(3, review.getDescription());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return review;
     }
 }
