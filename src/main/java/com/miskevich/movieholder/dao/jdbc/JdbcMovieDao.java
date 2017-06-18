@@ -2,7 +2,7 @@ package com.miskevich.movieholder.dao.jdbc;
 
 import com.miskevich.movieholder.dao.IMovieDao;
 import com.miskevich.movieholder.dao.jdbc.mapper.MovieRowMapper;
-import com.miskevich.movieholder.dao.jdbc.util.ConnectionSource;
+import com.miskevich.movieholder.dao.jdbc.datasource.ConnectionSource;
 import com.miskevich.movieholder.entity.Movie;
 
 import javax.sql.DataSource;

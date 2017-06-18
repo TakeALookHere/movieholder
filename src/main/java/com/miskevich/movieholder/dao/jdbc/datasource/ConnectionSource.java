@@ -1,4 +1,4 @@
-package com.miskevich.movieholder.dao.jdbc.util;
+package com.miskevich.movieholder.dao.jdbc.datasource;
 
 import com.miskevich.movieholder.dao.jdbc.JdbcMovieDao;
 import org.apache.commons.dbcp2.BasicDataSource;

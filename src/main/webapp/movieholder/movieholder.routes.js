@@ -12,17 +12,17 @@
         $stateProvider
             .state('movies', {
                 url: '/movies',
-                templateUrl: 'templates/movies.template.html'
+                template: '<movie-list></movie-list>'
             })
 
             .state('moviesByGenre', {
                 url: '/movies?genre=:genreId',
-                templateUrl: 'templates/movies.template.html'
+                template: '<movie-list></movie-list>'
             })
 
             .state('movie', {
                 url: '/movie?movie=:movieId',
-                templateUrl: 'templates/movie.template.html'
+                template: '<movie></movie>'
             })
         ;
 

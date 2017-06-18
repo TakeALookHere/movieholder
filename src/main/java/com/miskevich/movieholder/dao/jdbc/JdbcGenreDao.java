@@ -2,7 +2,7 @@ package com.miskevich.movieholder.dao.jdbc;
 
 import com.miskevich.movieholder.dao.IGenreDao;
 import com.miskevich.movieholder.dao.jdbc.mapper.GenreRowMapper;
-import com.miskevich.movieholder.dao.jdbc.util.ConnectionSource;
+import com.miskevich.movieholder.dao.jdbc.datasource.ConnectionSource;
 import com.miskevich.movieholder.entity.Genre;
 
 import javax.sql.DataSource;

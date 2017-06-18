@@ -7,4 +7,5 @@ public interface IUserService {
     User getById(int id);
     Review enrichWithUser(Review review);
     User getByNickname(String nickname);
+    User getDefaultUser();
 }

@@ -2,7 +2,7 @@ package com.miskevich.movieholder.dao.jdbc;
 
 import com.miskevich.movieholder.dao.IUserDao;
 import com.miskevich.movieholder.dao.jdbc.mapper.UserRowMapper;
-import com.miskevich.movieholder.dao.jdbc.util.ConnectionSource;
+import com.miskevich.movieholder.dao.jdbc.datasource.ConnectionSource;
 import com.miskevich.movieholder.entity.User;
 
 import javax.sql.DataSource;
@@ -54,21 +54,28 @@ public class JdbcUserDao implements IUserDao {
                     user = USER_ROW_MAPPER.map(resultSet);
                 }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-            if (user.getId() != 0) {
-                return user;
-            } else {
-                preparedStatement.setString(1, "Anonymous");
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
-                        user = USER_ROW_MAPPER.map(resultSet);
-                    }
+        return user;
+    }
+
+    @Override
+    public User getDefaultUser() {
+        User user = new User();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(USER_BY_NICKNAME_SQL)) {
+            preparedStatement.setString(1, "Anonymous");
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    user = USER_ROW_MAPPER.map(resultSet);
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return user;
     }
 }

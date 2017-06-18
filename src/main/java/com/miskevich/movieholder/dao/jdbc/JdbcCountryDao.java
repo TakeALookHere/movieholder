@@ -2,7 +2,7 @@ package com.miskevich.movieholder.dao.jdbc;
 
 import com.miskevich.movieholder.dao.ICountryDao;
 import com.miskevich.movieholder.dao.jdbc.mapper.CountryRowMapper;
-import com.miskevich.movieholder.dao.jdbc.util.ConnectionSource;
+import com.miskevich.movieholder.dao.jdbc.datasource.ConnectionSource;
 import com.miskevich.movieholder.entity.Country;
 
 import javax.sql.DataSource;

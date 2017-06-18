@@ -37,9 +37,20 @@ public class ReviewService implements IReviewService {
 
     @Override
     public Review add(Review review) {
-        User userByNickname = userService.getByNickname(review.getUser().getNickname());
+        User userByNickname;
+        if (null == review.getUser() || review.getUser().getId() == 0) {
+            userByNickname = userService.getDefaultUser();
+        } else {
+            userByNickname = userService.getByNickname(review.getUser().getNickname());
+        }
+
         review.setUser(userByNickname);
         return reviewDao.add(review);
+    }
+
+    @Override
+    public void remove(Review review) {
+        reviewDao.remove(review);
     }
 
     public void setReviewDao(IReviewDao reviewDao) {

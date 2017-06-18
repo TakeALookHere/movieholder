@@ -26,29 +26,31 @@
     <br>
     <div class="row" ng-controller="ReviewController as reviewCtrl">
         <div class="col-md-4 col-md-offset-4">
-            <div class="form-group">
-                <label class="control-label">Логин</label>
-                <input type="text" class="form-control" placeholder="Введите логин…" ng-model="review.user.nickname">
-            </div>
-            <div class="form-group required">
-                <label class="control-label">Комментарий</label>
-                <textarea class="form-control area-size" ng-required="true" required maxlength="500" rows="4" placeholder="Введите отзыв..." ng-model="review.description"></textarea>
-            </div>
-            <input type="hidden" ng-model="ctrl.movie.id">
-            <button type="submit" class="btn btn-primary pull-right" ng-click="reviewCtrl.submitReview(reviewCtrl.review)">Отправить</button>
+            <form ng-submit="reviewCtrl.submitReview(reviewCtrl.review)">
+                <div class="form-group">
+                    <label class="control-label">Логин</label>
+                    <input type="text" class="form-control" placeholder="Введите логин…" ng-model="reviewCtrl.review.user.nickname">
+                </div>
+                <div class="form-group required">
+                    <label class="control-label">Комментарий</label>
+                    <textarea class="form-control area-size" ng-required="true" required maxlength="500" rows="4" placeholder="Введите отзыв..." ng-model="reviewCtrl.review.description"></textarea>
+                </div>
+                <input type="hidden" ng-model="ctrl.movie.id">
+                <button type="submit" class="btn btn-primary pull-right">Отправить</button>
+            </form>
         </div>
     </div>
 
 </div>
 <br>
 
-<div class="row">
-    <div class="col-xs-12 col-md-12" ng-repeat='review in ctrl.movie.reviews'>
+<div class="row" ng-controller="ReviewController as reviewCtrl">
+    <div class="col-xs-12 col-md-12" ng-repeat='review in ctrl.reviews'>
         <span class="label label-primary">{{ review.user.nickname }}</span>
         <h4 class="width-center">{{ review.description }}</h4>
         <div class="btn-group pull-right">
             <button type="submit" class="btn btn-warning">Изменить</button>
-            <button type="submit" class="btn btn-danger">Удалить</button>
+            <button type="submit" class="btn btn-danger" ng-click="reviewCtrl.removeReview(review.id, $index)">Удалить</button>
         </div>
     </div>
 </div>

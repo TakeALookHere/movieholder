@@ -3,6 +3,7 @@ package com.miskevich.movieholder.web.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -26,9 +27,9 @@ public class JsonConverter {
         }
     }
 
-    public static <T> T fromJson(String json, Class<T> clazz) {
+    public static <T> T fromJson(BufferedReader reader, Class<T> clazz) {
         try {
-            return objectMapper.readValue(json, clazz);
+            return objectMapper.readValue(reader, clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

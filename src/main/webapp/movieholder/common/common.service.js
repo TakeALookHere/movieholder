@@ -51,13 +51,21 @@
             return $http({
                 method: "POST",
                 url: ("/review"),
-                //data: JSON.stringify({'review': review, 'message' : 'myMessage'}),
                 data: JSON.stringify({'description': review.description, 'movie' : review.movie, 'user' : review.user}),
-                //data: {'review': review, 'message' : 'myMessage'},
                 headers: {'Content-Type': 'application/json'}
             });
         };
 
+        service.removeReview = function(reviewId){
+            console.log("Review id for removal: ", reviewId);
+            console.log("ToJson", JSON.stringify({'id': reviewId}));
+            return $http({
+                method: "DELETE",
+                url: ("/review"),
+                data: JSON.stringify({'id': reviewId}),
+                headers: {'Content-Type': 'application/json'}
+            });
+        };
     }
 
 

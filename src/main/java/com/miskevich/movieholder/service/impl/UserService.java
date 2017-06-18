@@ -30,6 +30,11 @@ public class UserService implements IUserService {
         return userDao.getByNickname(nickname);
     }
 
+    @Override
+    public User getDefaultUser() {
+        return userDao.getDefaultUser();
+    }
+
     public void setUserDao(IUserDao userDao) {
         this.userDao = userDao;
     }
