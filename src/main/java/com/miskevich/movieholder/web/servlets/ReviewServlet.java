@@ -4,6 +4,7 @@ import com.miskevich.movieholder.entity.Review;
 import com.miskevich.movieholder.service.IReviewService;
 import com.miskevich.movieholder.service.util.ServiceLocator;
 import com.miskevich.movieholder.web.json.JsonConverter;
+import com.miskevich.movieholder.web.util.ServletUtil;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +51,41 @@ public class ReviewServlet extends HttpServlet {
 
             response.setContentType("application/json;charset=utf-8");
             response.setStatus(HttpServletResponse.SC_OK);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doPut(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (BufferedReader reader = request.getReader()) {
+            Review review = JsonConverter.fromJson(reader, Review.class);
+            Review editedReview = reviewService.edit(review);
+
+            try (BufferedWriter bufferedWriter = new BufferedWriter(response.getWriter())) {
+                bufferedWriter.write(JsonConverter.toJson(editedReview));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+        String requestReviewId = ServletUtil.getFirstValueOfRequestParam(request, "review");
+        Review review = reviewService.getById(Integer.valueOf(requestReviewId));
+
+        response.setContentType("application/json;charset=utf-8");
+        response.setStatus(HttpServletResponse.SC_OK);
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(response.getWriter())) {
+            bufferedWriter.write(JsonConverter.toJson(review));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

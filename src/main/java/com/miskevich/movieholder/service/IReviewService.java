@@ -10,4 +10,6 @@ public interface IReviewService {
     Movie enrichWithReview(Movie movie);
     Review add(Review review);
     void remove(Review review);
+    Review edit(Review review);
+    Review getById(long id);
 }

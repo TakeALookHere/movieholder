@@ -20,7 +20,6 @@
         function successCallback(response) {
             console.log("movie response data", response.data);
             ctrl.reviews = response.data.reviews;
-            //response.data.movie = {};
             console.log("reviews in movieCtrl: ", ctrl.reviews);
             DesktopNotificationController.showNotificationWithIcon("movie response data", response.data);
             ctrl.movie = response.data

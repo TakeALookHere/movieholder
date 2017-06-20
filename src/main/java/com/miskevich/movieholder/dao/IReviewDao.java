@@ -9,4 +9,5 @@ public interface IReviewDao {
     Review add(Review review);
     void remove(Review review);
     Review edit(Review review);
+    Review getById(long id);
 }

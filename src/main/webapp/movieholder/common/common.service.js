@@ -66,6 +66,27 @@
                 headers: {'Content-Type': 'application/json'}
             });
         };
+
+        service.getReviewById = function (reviewId) {
+            return $http({
+                method: "GET",
+                url: ("/review"),
+                params: {
+                    review: reviewId
+                }
+            });
+        };
+
+        service.putReview = function (review) {
+            console.log("Review in the PUT", review);
+            console.log("ToJson", JSON.stringify({'description': review.description, 'user' : review.user, 'id' : review.id, 'movie' : review.movie}));
+            return $http({
+                method: "PUT",
+                url: ("/review"),
+                data: JSON.stringify({'description': review.description, 'user' : review.user, 'id' : review.id, 'movie' : review.movie}),
+                headers: {'Content-Type': 'application/json'}
+            });
+        }
     }
 
 

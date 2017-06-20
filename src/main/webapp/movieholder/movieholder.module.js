@@ -9,6 +9,7 @@
         'genreList',
         'common',
         'movie',
+        'reviewList',
         'review'
     ])
     ;

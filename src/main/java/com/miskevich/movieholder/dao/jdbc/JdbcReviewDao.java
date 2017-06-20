@@ -1,8 +1,8 @@
 package com.miskevich.movieholder.dao.jdbc;
 
 import com.miskevich.movieholder.dao.IReviewDao;
-import com.miskevich.movieholder.dao.jdbc.mapper.ReviewRowMapper;
 import com.miskevich.movieholder.dao.jdbc.datasource.ConnectionSource;
+import com.miskevich.movieholder.dao.jdbc.mapper.ReviewRowMapper;
 import com.miskevich.movieholder.entity.Review;
 
 import javax.sql.DataSource;
@@ -19,6 +19,7 @@ public class JdbcReviewDao implements IReviewDao {
     private static final String REVIEW_INSERT_SQL = "insert into review (movie_id, user_id, description) values(?, ?, ?)";
     private static final String REVIEW_DELETE_SQL = "delete from review where id = ?";
     private static final String REVIEW_UPDATE_SQL = "update review set user_id = ?, description = ? where id = ?";
+    private static final String REVIEW_BY_ID_SQL = "select id, movie_id, user_id, description from review where id = ?";
 
     private static final ReviewRowMapper REVIEW_ROW_MAPPER = new ReviewRowMapper();
 
@@ -74,10 +75,31 @@ public class JdbcReviewDao implements IReviewDao {
 
     @Override
     public Review edit(Review review) {
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(REVIEW_UPDATE_SQL)){
-        //preparedStatement.setInt(1, );
-        }catch (SQLException e){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(REVIEW_UPDATE_SQL)) {
+            preparedStatement.setInt(1, review.getUser().getId());
+            preparedStatement.setString(2, review.getDescription());
+            preparedStatement.setLong(3, review.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return review;
+    }
+
+    @Override
+    public Review getById(long id) {
+        Review review = new Review();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(REVIEW_BY_ID_SQL)) {
+            preparedStatement.setLong(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    review = REVIEW_ROW_MAPPER.map(resultSet);
+                }
+            }
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return review;

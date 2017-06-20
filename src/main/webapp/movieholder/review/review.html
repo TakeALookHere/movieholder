@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form ng-submit="reviewItemCtrl.putReview(reviewItemCtrl.review)">
+            <div class="form-group">
+                <label class="control-label">Логин</label>
+                <input type="text" class="form-control" value="reviewItemCtrl.review.user.nickname"
+                       ng-model="reviewItemCtrl.review.user.nickname">
+            </div>
+            <div class="form-group required">
+                <label class="control-label">Комментарий</label>
+                <textarea class="form-control area-size" ng-required="true" required maxlength="500" rows="4"
+                          value="reviewItemCtrl.review.description"
+                          ng-model="reviewItemCtrl.review.description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Отправить</button><!--ui-sref="movie({ movieId: reviewItemCtrl.review.movie.id })"-->
+        </form>
+    </div>
+</div>
+
+<br>

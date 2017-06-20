@@ -24,6 +24,11 @@
                 url: '/movie?movie=:movieId',
                 template: '<movie></movie>'
             })
+
+            .state('review', {
+                url: '/review?review=:reviewId',
+                template: '<review reviews="ctrl.movie.reviews"></review>'
+            })
         ;
 
     }
